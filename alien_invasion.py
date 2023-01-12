@@ -32,6 +32,10 @@ class AlienInvasion:
             self._update_bullets()
             self._update_screen()
 
+    def _create_fleet(self):
+        alien = Alien(self)
+        self.aliens.add(alien)
+
     def _update_bullets(self):
         self.bullets.update()
         for bullet in self.bullets.copy():
@@ -74,10 +78,6 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
-
-    def _create_fleet(self):
-        alien = Alien(self)
-        self.aliens.add(alien)
 
         pygame.display.flip()
 

@@ -134,7 +134,15 @@ class AlienInvasion:
 
     def _check_play_button(self, mouse_pos):
         if self.play_button.rect.collidepoint(mouse_pos):
+            # Cancel player statistics
+            self.stats.reset_stats()
             self.stats.game_active = True
+            # Get rid of excess aliens and bullets
+            self.aliens.empty()
+            self.bullets.empty()
+            # Make new fleet in the center of the screen
+            self._create_fleet()
+            self.ship.center_ship()
 
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:

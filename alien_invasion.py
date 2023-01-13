@@ -104,13 +104,15 @@ class AlienInvasion:
 
     def _ship_hit(self):
         if self.stats.ships_left > 0:
+            # Reduce the number of ships and update the scoreboard
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
             self.aliens.empty()
             self.bullets.empty()
-            # new fleet in the center
+            # New fleet in the center
             self._create_fleet()
             self.ship.center_ship()
-            # pause
+            # Pause
             sleep(0.5)
         else:
             self.stats.game_active = False
@@ -152,6 +154,7 @@ class AlienInvasion:
             self.stats.game_active = True
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
             # Get rid of excess aliens and bullets
             self.aliens.empty()
             self.bullets.empty()
